@@ -1,5 +1,9 @@
 # Course Material and FAQ for my Complete JavaScript Course
 
+## This is my progress
+
+I am starting learning JS
+
 This repo contains starter files and the finished project files for all the projects contained in the course.
 
 Plus, I made all the [course slides available for download](slides-students-C03.pdf), to make it easier to follow along the conceptual videos.
