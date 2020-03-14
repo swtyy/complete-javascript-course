@@ -3,6 +3,7 @@
 ## This is my progress
 
 I am starting learning JS
+Hi Sweety
 
 This repo contains starter files and the finished project files for all the projects contained in the course.
 
