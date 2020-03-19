@@ -12,6 +12,7 @@ GAME RULES:
 var  activePlayer;
 activePlayer = 1;
 
+var roundScore = 0;
 
 
 //console.log(dice);
@@ -32,4 +33,8 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     dice = Math.floor(Math.random() * 6) + 1;
     var imageDom = document.querySelector('.dice'); //
     imageDom.src = 'dice-' + dice + '.png';   //
-});
+    roundScore = roundScore + dice;
+    document.getElementById('current-0').textContent = roundScore;
+    console.log(roundScore);
+    }
+);
