@@ -35,6 +35,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
     imageDom.src = 'dice-' + dice + '.png';   //
 
     if (dice == 1) {
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
         roundScore = 0;  //set roundScore to Zero and reflect in UI as below
         document.getElementById('current-' + activePlayer).textContent = roundScore;
         // To change active player
@@ -48,7 +49,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         activePlayer === 1 ? activePlayer = 0 : activePlayer = 1;
         // roundScore = 0;
        // roundScore = roundScore + dice;
-        
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('active');
         console.log(roundScore);
     } else {
         roundScore = roundScore + dice;
