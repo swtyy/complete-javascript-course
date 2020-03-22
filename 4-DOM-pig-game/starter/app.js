@@ -38,13 +38,14 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         roundScore = 0;  //set roundScore to Zero and reflect in UI as below
         document.getElementById('current-' + activePlayer).textContent = roundScore;
         // To change active player
-        if(activePlayer === 1){
-            activePlayer = 0;
-           // roundScore = 0;
-        } else {
-            activePlayer = 1;
-            // roundScore = 0;
-        }
+        // if(activePlayer === 1){
+        //     activePlayer = 0;
+        //    // roundScore = 0;
+        // } else {
+        //     activePlayer = 1;
+        //     // roundScore = 0;
+        // }   
+        activePlayer === 1 ? activePlayer = 0 : activePlayer = 1;
         // roundScore = 0;
        // roundScore = roundScore + dice;
         
