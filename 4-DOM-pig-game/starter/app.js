@@ -9,8 +9,8 @@ GAME RULES:
 
 */
 
-var  activePlayer;
-activePlayer = 1;
+var activePlayer;
+activePlayer = 0;
 
 var roundScore = 0;
 
@@ -28,13 +28,30 @@ document.getElementById('current-1').textContent = '0';
 document.getElementById('score-0').textContent = '0';
 document.getElementById('score-1').textContent = '0';
 
-document.querySelector('.btn-roll').addEventListener('click', function(){
+document.querySelector('.btn-roll').addEventListener('click', function () {
     var dice;
     dice = Math.floor(Math.random() * 6) + 1;
     var imageDom = document.querySelector('.dice'); //
     imageDom.src = 'dice-' + dice + '.png';   //
-    roundScore = roundScore + dice;
-    document.getElementById('current-0').textContent = roundScore;
-    console.log(roundScore);
+
+    if (dice == 1) {
+        roundScore = 0;  //set roundScore to Zero and reflect in UI as below
+        document.getElementById('current-' + activePlayer).textContent = roundScore;
+        // To change active player
+        if(activePlayer === 1){
+            activePlayer = 0;
+           // roundScore = 0;
+        } else {
+            activePlayer = 1;
+            // roundScore = 0;
+        }
+        // roundScore = 0;
+       // roundScore = roundScore + dice;
+        
+        console.log(roundScore);
+    } else {
+        roundScore = roundScore + dice;
+        document.getElementById('current-' + activePlayer).textContent = roundScore;
+        console.log(roundScore);
     }
-);
+});
