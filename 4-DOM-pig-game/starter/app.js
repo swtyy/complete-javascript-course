@@ -9,8 +9,9 @@ GAME RULES:
 
 */
 
-var activePlayer;
+var activePlayer, globalScore;
 activePlayer = 0;
+globalScore = [0, 0];
 
 var roundScore = 0;
 
@@ -56,4 +57,26 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         document.getElementById('current-' + activePlayer).textContent = roundScore;
         console.log(roundScore);
     }
+});
+
+document.querySelector('.btn-hold').addEventListener('click', function(){
+     //Add current score to globalScore
+     globalScore[activePlayer] += roundScore; //globalScore[0] = globalScore[0] + roroundScore;
+     console.log(globalScore);
+     //Update the UI
+     document.getElementById('score-' + activePlayer).textContent = globalScore[activePlayer];
+     //Change Active player 
+
+     document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+     activePlayer === 1 ? activePlayer = 0 : activePlayer = 1;
+     roundScore = 0;
+     document.querySelector('.player-' + activePlayer + '-panel').classList.add('active');
+
+     //Check if player won the game ::
+    if(globalScore[activePlayer] >= 30){
+        document.getElementById('name-' + activePlayer).textContent='Winner';
+
+    }
+
+    console.log('hold button clicked');
 });
