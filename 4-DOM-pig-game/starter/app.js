@@ -9,6 +9,7 @@ GAME RULES:
 
 */
 
+init();
 var activePlayer, globalScore;
 activePlayer = 0;
 globalScore = [0, 0];
@@ -80,3 +81,27 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
 
     console.log('hold button clicked');
 });
+
+    document.querySelector('.btn-new').addEventListener('click', init);
+
+    function init(){
+        //Set all variable to 0
+        activePlayer = 0;
+        globalScore = [0, 0];
+        roundScore = 0;
+        
+        // To reflect in UI
+        document.getElementById('current-0').textContent = '0';
+        document.getElementById('current-1').textContent = '0';
+        document.getElementById('score-0').textContent = '0';
+        document.getElementById('score-1').textContent = '0';
+        console.log('Game Restart');
+    }
+
+
+
+
+
+
+
+
