@@ -39,6 +39,42 @@ var uiController = (function(){
 
 var dataController = (function(){
     //some code
+    var Incomes = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    }
+    var Expenses = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    }
+// DAta structure for holding INcome and Expense
+    var data = {
+        allItem : {
+            exp : [],
+            inc : []
+        },
+        totals : {
+            exp: 0,
+            inc : 0
+        }
+    };
+    return {
+        addItem : function(type, desc, value){
+            var newItem, ID;
+            ID = 0;
+            if(type === 'exp'){
+                newItem = new Expenses(ID, desc, value);
+            }else{
+                newItem = new Incomes(ID, desc, value);
+            }
+            data.allItem[type].push(newItem);
+        },
+        debug: function() {
+            console.info(data);
+        }
+    }
 
 })();
 
@@ -66,7 +102,7 @@ var controller = (function(uiCtrl, dataCtrl){  //parameters
         console.log(inputObject.description);
         console.log(inputObject.value);
         // 2. Add this item in budget/data controller
-
+        dataCtrl.addItem(inputObject.type, inputObject.description, inputObject.value);
         // 3.Display item to UI
 
         //4. CAlculate budget
