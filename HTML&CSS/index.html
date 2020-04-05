@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sample App using HTML and CSS</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="banner">
+            <div class="left-box">
+                <div class="wrapper">
+                    <img src="images/logo.jpg"  class="logo" alt="">
+                    <div class="search-box">
+                        <img src="images/search.png" alt="">
+                        <input type="text" placeholder="search">
+                    </div>
+                    <div class="verticle-line"></div>
+                    <ul>
+                        <li><a href="images/search.png">Production</a></li>
+                        <li><a href="#">Production_!</a></li>
+                        <li><a href="#">Production_@</a></li>
+                        <li><a href="#">Production_6</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right-box">
+                <nav>
+                    <ul>
+                       <li> <a href = "#">Home</a> </li>
+                       <li> <a href = "#">About</a> </li>
+                        <li> <a href = "#">Languages</a> </li>
+                        <li> <a href = "#">Data Structure</a> </li>       
+                        <li> <a href = "#">Algorithm</a> </li>
+                     </ul>
+                </nav>
+                <h2>The Next <br> Generation</h2>
+                <div class="robot">
+                    <img src="images/robo.png">
+                    <h1>Robotics</h1>
+                    <div class="features">
+                        <div>
+                            <small>Watch Preview</small>
+                            <img src="images/play.png" alt="">
+                        </div>
+                        <div>
+                            <small>The Making</small>
+                            <img src="images/settings.png" alt="">
+                        </div>
+                        <div>
+                            <small>Download Preview</small>
+                            <img src="images/download.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="circle"></div>
+                <div class="pagination">
+                    <ul>
+                        <li><a href="#">01</a></li>
+                        <li><a href="#">02</a></li>
+                        <li><a href="#">03</a></li>
+                    </ul>
+                </div>                
+            </div>
+        </div>
+        <div class="smallCursor"></div>
+        <script>
+            var smallCursor = document.querySelector(".smallCursor");
+            document.onmousemove = function(e){
+                //console.log(e.pageX + ' ' + e.pageY );
+                smallCursor.style.left = (e.pageX -5) +  "px";  
+                smallCursor.style.top = (e.pageY -5) + "px";
+                smallCursor.style.display = "block";
+            }
+        </script>
+    </body>
+</html>
