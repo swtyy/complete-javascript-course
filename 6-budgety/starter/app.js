@@ -43,6 +43,21 @@ var dataController = (function(){
 })();
 
 var controller = (function(uiCtrl, dataCtrl){  //parameters
+    var setUpEventListner = function (){
+        var DOMstrings = uiCtrl.getDOMstrings;
+        document.querySelector(DOMstrings.addButton).addEventListener('click', ctrlAddItem);//function will execute asa we click or hit butto
+            //console.log('Submit button is clicked');
+    
+        document.addEventListener('keypress', function(event){
+            //console.log(event);
+            if(event.keyCode === 13){
+                ctrlAddItem();
+            }
+      
+        });
+    }
+
+
     var ctrlAddItem = function(){
     
         // 1. Get input
@@ -61,16 +76,14 @@ var controller = (function(uiCtrl, dataCtrl){  //parameters
     }
 
     //some code
-    var DOMstrings = uiCtrl.getDOMstrings;
-    document.querySelector(DOMstrings.addButton).addEventListener('click', ctrlAddItem);//function will execute asa we click or hit butto
-        //console.log('Submit button is clicked');
-
-    document.addEventListener('keypress', function(event){
-        //console.log(event);
-        if(event.keyCode === 13){
-            ctrlAddItem();
+    return {
+        init : function(){
+            console.log('Application started');
+            setUpEventListner();
         }
-  
-    });
+    }
     
 })(uiController, dataController);  // arguments
+
+
+controller.init();
