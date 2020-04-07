@@ -63,13 +63,27 @@ var dataController = (function(){
     return {
         addItem : function(type, desc, value){
             var newItem, ID;
-            ID = 0;
+            
+            //ID = 0;
+            // Create new ID
+            if(data.allItem[type].length === 0){
+                ID = 1;
+            }else{
+                ID = data.allItem[type][data.allItem[type].length -1 ].id + 1;
+            }
+
+            // Create new Item based on 'inc' r 'exp' type
             if(type === 'exp'){
                 newItem = new Expenses(ID, desc, value);
             }else{
                 newItem = new Incomes(ID, desc, value);
             }
+
+            // Push it into our database structur
             data.allItem[type].push(newItem);
+
+            // Return the new element
+            return newItem;
         },
         debug: function() {
             console.info(data);
@@ -93,7 +107,6 @@ var controller = (function(uiCtrl, dataCtrl){  //parameters
         });
     }
 
-
     var ctrlAddItem = function(){
     
         // 1. Get input
@@ -101,10 +114,12 @@ var controller = (function(uiCtrl, dataCtrl){  //parameters
         console.log(inputObject.type);
         console.log(inputObject.description);
         console.log(inputObject.value);
+
         // 2. Add this item in budget/data controller
         dataCtrl.addItem(inputObject.type, inputObject.description, inputObject.value);
-        // 3.Display item to UI
 
+        // 3.Display item to UI
+            
         //4. CAlculate budget
 
         // 5. Dispalya budget to UI
