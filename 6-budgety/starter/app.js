@@ -21,7 +21,9 @@ var uiController = (function(){
         inputType: '.add__type',
         inputDesc: '.add__description',
         inputValue: '.add__value',
-        addButton: '.add__btn'
+        addButton: '.add__btn',
+        incomeList: '.income__list',
+        expensesList: '.expenses__list'
     }
     return {
         getInput: function(){
@@ -31,8 +33,30 @@ var uiController = (function(){
                 value: document.querySelector(DOMstrings.inputValue).value
             }
         },
-        getDOMstrings: DOMstrings
-        
+        getDOMstrings: DOMstrings,
+        addListItem: function(obj, type){
+            var html, newHtml;
+            // Create HTML string with placeholder text
+            if (type === 'inc'){
+                html = '<div class="item clearfix" id="expense-%ID%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div>    <div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+
+            }else if (type == 'exp') {
+                html = '<div class="item clearfix" id="expense-%ID%"> <div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div></div>';
+            }
+
+            //Replace placeholder text with some actual data
+            newHtml = html.replace('%ID%' , obj.id)
+            newHtml = newHtml.replace('%description%' , obj.description);
+            newHtml = newHtml.replace('%value%', obj.value);
+            console.log(newHtml);
+
+            //Insert HTML into DOM
+            if(type === 'inc'){
+                document.querySelector(DOMstrings.incomeList).insertAdjacentHTML('afterbegin', newHtml);
+            }else {
+                document.querySelector(DOMstrings.expensesList).insertAdjacentHTML('afterbegin', newHtml);
+            }
+        } 
     }
 
 })();
@@ -116,10 +140,11 @@ var controller = (function(uiCtrl, dataCtrl){  //parameters
         console.log(inputObject.value);
 
         // 2. Add this item in budget/data controller
-        dataCtrl.addItem(inputObject.type, inputObject.description, inputObject.value);
+        var item = dataCtrl.addItem(inputObject.type, inputObject.description, inputObject.value);
 
         // 3.Display item to UI
-            
+        uiCtrl.addListItem(item, inputObject.type);
+
         //4. CAlculate budget
 
         // 5. Dispalya budget to UI
