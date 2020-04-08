@@ -63,6 +63,8 @@ var uiController = (function(){
             document.querySelector(DOMstrings.inputDesc).value = '';
             document.querySelector(DOMstrings.inputValue).value = '';
 
+            //To set focus on description
+            document.querySelector(DOMstrings.inputDesc).focus();
         }
     }
 
@@ -153,7 +155,7 @@ var controller = (function(uiCtrl, dataCtrl){  //parameters
         uiCtrl.addListItem(item, inputObject.type);
         // 4.Clear UI fields
         uiCtrl.resetInput();
-        
+
         //4. CAlculate budget
 
         // 5. Dispalya budget to UI
