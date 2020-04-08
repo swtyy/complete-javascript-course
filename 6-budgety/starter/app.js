@@ -56,7 +56,14 @@ var uiController = (function(){
             }else {
                 document.querySelector(DOMstrings.expensesList).insertAdjacentHTML('afterbegin', newHtml);
             }
-        } 
+        },
+
+        // TO Reset Input
+        resetInput: function(){
+            document.querySelector(DOMstrings.inputDesc).value = '';
+            document.querySelector(DOMstrings.inputValue).value = '';
+
+        }
     }
 
 })();
@@ -144,7 +151,9 @@ var controller = (function(uiCtrl, dataCtrl){  //parameters
 
         // 3.Display item to UI
         uiCtrl.addListItem(item, inputObject.type);
-
+        // 4.Clear UI fields
+        uiCtrl.resetInput();
+        
         //4. CAlculate budget
 
         // 5. Dispalya budget to UI
