@@ -23,7 +23,10 @@ var uiController = (function(){
         inputValue: '.add__value',
         addButton: '.add__btn',
         incomeList: '.income__list',
-        expensesList: '.expenses__list'
+        expensesList: '.expenses__list',
+        incomeClass: '.budget__income--value',
+        expenseClass: '.budget__expenses--value',
+        budgetClass: '.budget__value'
     }
     return {
         getInput: function(){
@@ -65,6 +68,14 @@ var uiController = (function(){
 
             //To set focus on description
             document.querySelector(DOMstrings.inputDesc).focus();
+        },
+        // update Budget
+        updateBudget: function(totalInc, totalExp, totalBudget){
+            console.log('Invoked update budget');
+            document.querySelector(DOMstrings.incomeClass).textContent = totalInc;
+            document.querySelector(DOMstrings.expenseClass).textContent = totalExp;
+            document.querySelector(DOMstrings.budgetClass).textContent = totalBudget;
+
         }
     }
 
@@ -85,13 +96,14 @@ var dataController = (function(){
 // DAta structure for holding INcome and Expense
     var data = {
         allItem : {
-            exp : [],
-            inc : []
+            exp: [],
+            inc: []
         },
         totals : {
             exp: 0,
-            inc : 0
-        }
+            inc: 0
+        },
+        budget: 0
     };
     return {
         addItem : function(type, desc, value){
@@ -118,6 +130,35 @@ var dataController = (function(){
             // Return the new element
             return newItem;
         },
+
+        calculateBudget: function(){
+
+            // Calculate total Income and Expenses
+            var totalExpenses = 0, totalIncome = 0;
+            data.allItem.exp.forEach(function(item, index) {
+                console.log(item + " " + index);
+                totalExpenses = totalExpenses + item.value;
+            });
+            data.totals.exp = totalExpenses;
+
+            data.allItem.inc.forEach(function(item, index) {
+                console.log(item + " " + index);
+                totalIncome = totalIncome + item.value;
+            });
+            data.totals.inc = totalIncome;
+
+            //CAlculate Budget
+            data.budget = totalIncome - totalExpenses; 
+        },
+
+        getBudget: function(){
+            return {
+                budget: data.budget,
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp
+            }
+        },
+
         debug: function() {
             console.info(data);
         }
@@ -143,10 +184,15 @@ var controller = (function(uiCtrl, dataCtrl){  //parameters
     var updateBudget = function() {
 
         // 1.CAlculate budget
+        dataCtrl.calculateBudget();
 
         //Return the budget
+        var budgetObj = dataCtrl.getBudget();
 
         // 5. Dispalya the budget on the UI
+        
+        uiCtrl.updateBudget(budgetObj.totalInc, budgetObj.totalExp, budgetObj.budget);
+
     };
 
     var ctrlAddItem = function(){
@@ -173,6 +219,7 @@ var controller = (function(uiCtrl, dataCtrl){  //parameters
         init : function(){
             console.log('Application started');
             setUpEventListner();
+            uiCtrl.updateBudget("  ", " ", " ");
         }
     }
     
